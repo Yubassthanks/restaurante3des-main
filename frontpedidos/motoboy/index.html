@@ -42,11 +42,24 @@
                 <th>Motoboy</th>
                 <th>Placa</th>
                 <th>Modelo</th>
+                <th>Excluir</th>
+                <th>Alterar</th>
             </thead>
             <tbody id="tcorpo"></tbody>
         </table>
     </main>
-    <footer></footer>
+    <footer>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="fecharModal()">&times;</span>
+                <h2>Editar Motoboy</h2>
+                <input type="text" id="nomeMotoboy" placeholder="Nome do Motoboy">
+                <input type="text" id="placaMotoboy" placeholder="Placa do Motoboy">
+                <input type="text" id="modeloMotoboy" placeholder="Modelo do Motoboy">
+                <button id="salvarAlteracoes" data-id="" onclick="salvarAlteracoes()">Salvar Alterações</button>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

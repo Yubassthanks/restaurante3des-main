@@ -24,13 +24,15 @@ const read = async (req, res) => {
     }
 }
 
+
 const update = async (req, res) => {
     try {
+        const { id } = req.params;
         const data = req.body;
         let motoboy = await prisma.motoboy.update({
             data: data,
             where: {
-                id: parseInt(req.body.id)
+                id: parseInt(id)
             }
         });
         res.status(202).json(motoboy).end();
@@ -39,30 +41,25 @@ const update = async (req, res) => {
     }
 }
 
+
 const del = async (req, res) => {
     try {
         const motoboyId = parseInt(req.params.id);
         
-        // Verifique se existem pedidos relacionados ao motoboy
+      
         const pedidosRelacionados = await prisma.pedido.findMany({
             where: {
                 motoboyId: motoboyId,
             },
         });
 
-        if (pedidosRelacionados.length > 0) {
-            // Você pode optar por excluir os pedidos relacionados aqui
-            // ou atualizar as referências de chave estrangeira, dependendo da sua lógica de negócios
-
-            // Exemplo de exclusão de pedidos relacionados
+        if (pedidosRelacionados.length > 0) {      
             await prisma.pedido.deleteMany({
                 where: {
                     motoboyId: motoboyId,
                 },
             });
         }
-
-        // Agora você pode excluir o motoboy
         await prisma.motoboy.delete({
             where: {
                 id: motoboyId,

@@ -13,6 +13,7 @@ router.get('/', (req, res) => { return res.json("API Restaurante respondendo") }
 router.post('/motoboy', motoboy.create);
 router.get('/motoboy', motoboy.read);
 router.get('/motoboy/:id', motoboy.read);
+router.put('/motoboy/:id', motoboy.update);
 router.put('/motoboy', motoboy.update);
 router.delete('/motoboy/:id', motoboy.del);
 
